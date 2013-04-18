@@ -34,7 +34,7 @@ class CitLunchJson:
         self._fetcher = CitLunchFetcher(self._cache_dir)
 
     def update(self):
-        for name in ['tsuda_dining', 'shiba_dining', 'shiba_kissa']:
+        for name in ['tsuda_dining', 'snara_dining', 'snara_kissa']:
             for date, url in self._fetcher.get_index(name + '.html'):
                 menu = self._fetcher.get_menu(url)
                 filename = '%s/%s/menu.json' % (name, date.strftime('%Y-%m-%d'))
