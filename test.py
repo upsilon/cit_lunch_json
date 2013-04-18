@@ -69,11 +69,18 @@ class CitLunchFetcherTest(unittest.TestCase):
 ・ﾁｰｽﾞｺｰﾝのせﾊﾝﾊﾞｰｸﾞ<BR>
 ・ﾎﾟﾃﾄﾌﾗｲ<BR>
 <BR>
+<SPAN style="color:#6666FF">▼丼弁当</SPAN> \300
+<BR>
+・鶏ﾁﾘｿｰｽ丼<BR>
+<BR>
+・唐揚&amp;山菜ごはん<BR>
+<BR
 '''
         self.assertEqual(list(self.fetcher.get_menu('hoge.html')), [
           { 'name': u'Aﾗﾝﾁ', 'price': 300, 'details': [u'やきとり丼'] },
           { 'name': u'Bﾗﾝﾁ', 'price': 300, 'details': [u'とんかつ'] },
           { 'name': u'Cﾗﾝﾁ', 'price': 350, 'details': [u'ﾁｰｽﾞｺｰﾝのせﾊﾝﾊﾞｰｸﾞ', u'ﾎﾟﾃﾄﾌﾗｲ'] },
+          { 'name': u'丼弁当', 'price': 300, 'details': [u'鶏ﾁﾘｿｰｽ丼', u'唐揚&山菜ごはん'] },
         ])
 
 if __name__ == '__main__':

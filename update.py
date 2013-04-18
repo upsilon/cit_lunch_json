@@ -24,6 +24,7 @@ import json
 import urlparse
 import re
 import datetime
+import xml.sax.saxutils
 
 class CitLunchJson:
     def __init__(self, base_dir):
@@ -73,7 +74,7 @@ class CitLunchFetcher:
                 if item != None:
                     yield item
                 item = {
-                    'name': m.group(1),
+                    'name': xml.sax.saxutils.unescape(m.group(1)),
                     'price': int(m.group(2)),
                     'details': [],
                 }
@@ -81,7 +82,7 @@ class CitLunchFetcher:
 
             m = re.match(ur'・(.+)<br>', line, re.I)
             if m != None:
-                item['details'].append(m.group(1))
+                item['details'].append(xml.sax.saxutils.unescape(m.group(1)))
         yield item
 
     def _fetch(self, url):
