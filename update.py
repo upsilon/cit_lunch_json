@@ -67,6 +67,7 @@ class CitLunchFetcher:
 
     def get_menu(self, url):
         html = self._fetch(url)
+        html = re.sub(ur'<!--.*?-->', '', html, 0, re.DOTALL)
         item = None
         for line in html.splitlines():
             m = re.match(ur'<span[^>]*>▼(.+)</span> \\(\d+).*', line, re.I)
