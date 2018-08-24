@@ -70,13 +70,13 @@ class CitLunchFetcher:
         html = re.sub(ur'<!--.*?-->', '', html, 0, re.DOTALL)
         item = None
         for line in html.splitlines():
-            m = re.match(ur'<span[^>]*>▼(.+)</span> \\(\d+).*', line, re.I)
+            m = re.match(ur' *?<span[^>]*>▼(.+)</span>(?: \\(\d+))?.*', line, re.I)
             if m != None:
                 if item != None:
                     yield item
                 item = {
                     'name': xml.sax.saxutils.unescape(m.group(1)),
-                    'price': int(m.group(2)),
+                    'price': int(m.group(2)) if m.group(2) != None else None,
                     'details': [],
                 }
                 continue
